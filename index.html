@@ -179,6 +179,8 @@ h1,h2,h3{font-weight:400;margin:0;letter-spacing:-.018em;line-height:1;}
 /* ---------- project index ---------- */
 .projects{position:relative;z-index:2;}
 #projList{display:flex;flex-direction:column;gap:clamp(18px,2.4vw,30px);}
+.p-info{display:flex;flex-direction:column;gap:6px;}
+.p-desc{font-size:clamp(12px,1vw,13px);line-height:1.5;color:var(--muted);max-width:42ch;font-family:var(--mono);letter-spacing:.01em;}
 .p-row{
   display:grid;grid-template-columns:var(--c1,72px) 1fr auto var(--c4,180px);
   align-items:center;gap:clamp(16px,3vw,40px);
@@ -348,6 +350,16 @@ h1,h2,h3{font-weight:400;margin:0;letter-spacing:-.018em;line-height:1;}
 
 .colophon{font-family:var(--mono);font-size:11px;color:var(--contact-faint);line-height:1.8;letter-spacing:.02em;margin-top:clamp(48px,9vh,86px);padding-top:26px;border-top:1px solid color-mix(in oklab,var(--paper) 12%, transparent);}
 
+/* ---------- CTA cierre ---------- */
+.ct-cta{display:flex;flex-wrap:wrap;align-items:center;gap:20px 32px;margin-top:clamp(36px,6vh,56px);padding-top:32px;border-top:1px solid color-mix(in oklab,var(--paper) 12%, transparent);}
+.ct-cta-label{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--contact-faint);}
+.ct-cta-text{font-size:clamp(20px,2.4vw,28px);color:var(--paper);font-weight:380;line-height:1.3;max-width:32ch;}
+.ct-cta-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:clamp(20px,3.5vh,32px);}
+.cta-primary{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:13px;letter-spacing:.06em;text-transform:uppercase;background:var(--paper);color:var(--ink);border-radius:9px;padding:15px 22px;transition:filter .25s var(--ease);}
+.cta-primary:hover{filter:brightness(.94);}
+.cta-secondary{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:13px;letter-spacing:.06em;text-transform:uppercase;border:1px solid color-mix(in oklab,var(--paper) 22%, transparent);color:var(--contact-em);border-radius:9px;padding:15px 22px;transition:border-color .25s var(--ease), color .25s var(--ease);}
+.cta-secondary:hover{border-color:color-mix(in oklab,var(--paper) 42%, transparent);color:var(--paper);}
+
 /* ---------- reveal on load / scroll ---------- */
 .reveal{opacity:0;transform:translateY(18px);transition:opacity 1s var(--ease), transform 1s var(--ease);}
 .reveal.in{opacity:1;transform:none;}
@@ -444,7 +456,7 @@ h1,h2,h3{font-weight:400;margin:0;letter-spacing:-.018em;line-height:1;}
   <div class="wrap">
     <h1 class="display reveal d1">Ignacia<br>Mordentti<em>,</em><br><em>diseño.</em></h1>
     <div class="hero-foot">
-      <p class="lede reveal d2">Diseño de marca, packaging, producto y movimiento. Proyectos académicos y reales, reunidos en un mismo lugar.</p>
+      <p class="lede reveal d2">Del boceto a la pieza: diseño industrial que conecta concepto, materialidad y fabricación.</p>
       <div class="hero-side">
         <div class="tags reveal d3">
           <span class="tag">Branding</span>
@@ -469,72 +481,72 @@ h1,h2,h3{font-weight:400;margin:0;letter-spacing:-.018em;line-height:1;}
 
       <a class="p-row" href="proyectos/bruma.html" style="--g1:#4256bd;--g2:#a9c8d0;--g3:#d3e0e3">
         <span class="p-num">01</span>
-        <span class="p-name">Bruma</span>
-        <span class="p-cat">Branding</span>
+        <span class="p-info"><span class="p-name">Bruma</span><span class="p-desc">Perchero de dormitorio individual inspirado en la fluidez de una cascada, combinando calma visual con funcionalidad modular.</span></span>
+        <span class="p-cat">Branding · 2025</span>
         <span class="p-thumb"><span class="p-fig"><img src="bruma/cover.png" alt="Bruma" loading="lazy"></span></span>
         <span class="p-arrow">↗</span>
       </a>
 
       <a class="p-row" href="proyectos/aceite-havanna.html" style="--g1:#e0a63b;--g2:#9a8c47;--g3:#dccfab">
         <span class="p-num">02</span>
-        <span class="p-name">Aceite Havanna</span>
-        <span class="p-cat">Packaging</span>
+        <span class="p-info"><span class="p-name">Aceite Havanna</span><span class="p-desc">Packaging de aceite de oliva para la línea gourmet de Havanna, donde la identidad de la marca se traduce en estructura y gráfica de alto valor.</span></span>
+        <span class="p-cat">Packaging · 2025</span>
         <span class="p-thumb"><span class="p-fig"><img src="aceite-havanna/cover.png" alt="Aceite Havanna" loading="lazy"></span></span>
         <span class="p-arrow">↗</span>
       </a>
 
       <a class="p-row" href="proyectos/diseno-de-movimiento.html" style="--g1:#3c3c3a;--g2:#9a9a96;--g3:#cfcfc9">
         <span class="p-num">03</span>
-        <span class="p-name">Diseño de Movimiento</span>
-        <span class="p-cat">Motion</span>
+        <span class="p-info"><span class="p-name">Diseño de Movimiento</span><span class="p-desc">Serie de piezas en motion design que exploran la animación como sistema de comunicación visual, desde la tipografía hasta la composición en movimiento.</span></span>
+        <span class="p-cat">Motion · 2025</span>
         <span class="p-thumb"><span class="p-fig"><img src="diseno-de-movimiento/cover.png" alt="Diseño de Movimiento" loading="lazy"></span></span>
         <span class="p-arrow">↗</span>
       </a>
 
       <a class="p-row" href="proyectos/doggy-bag.html" style="--g1:#d9633f;--g2:#f1c8aa;--g3:#e7a187">
         <span class="p-num">04</span>
-        <span class="p-name">Doggy Bag</span>
-        <span class="p-cat">Packaging</span>
+        <span class="p-info"><span class="p-name">Doggy Bag</span><span class="p-desc">Packaging para restos de comida de restaurante que resuelve la funcionalidad cotidiana con una forma gestual, sostenible y afectiva.</span></span>
+        <span class="p-cat">Packaging · 2025</span>
         <span class="p-thumb"><span class="p-fig"><img src="doggy-bag/cover.png" alt="Doggy Bag" loading="lazy"></span></span>
         <span class="p-arrow">↗</span>
       </a>
 
       <a class="p-row" href="proyectos/domus.html" style="--g1:#c5a37c;--g2:#a98a66;--g3:#decdb4">
         <span class="p-num">05</span>
-        <span class="p-name">Domus</span>
-        <span class="p-cat">Branding</span>
+        <span class="p-info"><span class="p-name">Domus</span><span class="p-desc">Identidad de marca para un estudio de arquitectura e interiorismo, construida sobre valores de calidez, solidez y contemporaneidad.</span></span>
+        <span class="p-cat">Branding · 2025</span>
         <span class="p-thumb"><span class="p-fig"><img src="domus/cover.png" alt="Domus" loading="lazy"></span></span>
         <span class="p-arrow">↗</span>
       </a>
 
       <a class="p-row" href="proyectos/el-cielito.html" style="--g1:#aa2f22;--g2:#e6a52f;--g3:#e3bcae">
         <span class="p-num">06</span>
-        <span class="p-name">El Cielito</span>
-        <span class="p-cat">Branding</span>
+        <span class="p-info"><span class="p-name">El Cielito</span><span class="p-desc">Identidad visual para un bar de barrio porteño que conjuga nostalgia y frescura en un sistema de marca íntimo y reconocible.</span></span>
+        <span class="p-cat">Branding · 2025</span>
         <span class="p-thumb"><span class="p-fig"><img src="el-cielito/cover.png" alt="El Cielito" loading="lazy"></span></span>
         <span class="p-arrow">↗</span>
       </a>
 
       <a class="p-row" href="proyectos/set-de-terere.html" style="--g1:#b6bb84;--g2:#9aa066;--g3:#dcdcc0">
         <span class="p-num">07</span>
-        <span class="p-name">Set de Tereré</span>
-        <span class="p-cat">Producto</span>
+        <span class="p-info"><span class="p-name">Set de Tereré</span><span class="p-desc">Set de producto para la ceremonia del tereré, diseñado desde la ergonomía y la materialidad para elevar un ritual cotidiano en experiencia.</span></span>
+        <span class="p-cat">Producto · 2025</span>
         <span class="p-thumb"><span class="p-fig"><img src="set-de-terere/cover.png" alt="Set de Tereré" loading="lazy"></span></span>
         <span class="p-arrow">↗</span>
       </a>
 
       <a class="p-row" href="proyectos/stand-prision-break.html" style="--g1:#3c3b39;--g2:#8f8e8a;--g3:#c6c4bf">
         <span class="p-num">08</span>
-        <span class="p-name">Stand Prision Break</span>
-        <span class="p-cat">Stand de exposición</span>
+        <span class="p-info"><span class="p-name">Stand Prision Break</span><span class="p-desc">Stand de exposición temático inspirado en la serie, donde la tensión narrativa se traduce en una propuesta espacial inmersiva e inquietante.</span></span>
+        <span class="p-cat">Stand · 2025</span>
         <span class="p-thumb"><span class="p-fig"><img src="stand-prision-break/gallery-01.png" alt="Stand Prision Break" loading="lazy"></span></span>
         <span class="p-arrow">↗</span>
       </a>
 
       <a class="p-row" href="proyectos/tizana.html" style="--g1:#ab6c46;--g2:#c79064;--g3:#dcb792">
         <span class="p-num">09</span>
-        <span class="p-name">Tizana</span>
-        <span class="p-cat">Packaging</span>
+        <span class="p-info"><span class="p-name">Tizana</span><span class="p-desc">Packaging para una bebida artesanal latinoamericana que comunica frescura, tradición y carácter a través de gráfica y estructura.</span></span>
+        <span class="p-cat">Packaging · 2025</span>
         <span class="p-thumb"><span class="p-fig"><img src="tizana/cover.png" alt="Tizana" loading="lazy"></span></span>
         <span class="p-arrow">↗</span>
       </a>
@@ -552,9 +564,7 @@ h1,h2,h3{font-weight:400;margin:0;letter-spacing:-.018em;line-height:1;}
     </div>
     <div class="about-grid">
       <div class="about-copy reveal">
-        <p>Soy Ignacia Mordentti, diseñadora <em>—y estudiante y emprendedora—</em> radicada en Buenos Aires.</p>
-        <p>Trabajo entre la marca, el packaging, el producto y el movimiento. Me interesa el diseño que cuida cada detalle: del concepto al render final, de la idea a la pieza que se puede sostener en la mano.</p>
-        <p>Reúno acá proyectos académicos y reales porque en ambos pongo la misma intención: claridad, oficio y una pregunta detrás de cada decisión.</p>
+        <p>Diseñadora industrial radicada en Buenos Aires, con trabajo en marca, packaging, producto y movimiento. <em>Mi proceso arranca en el boceto y no termina hasta que la pieza puede sostenerse en la mano:</em> cada decisión tiene una pregunta detrás, cada proyecto —académico o real— la misma exigencia. Disponible para colaboraciones que necesiten tanto rigor técnico como visión creativa.</p>
         <div class="about-meta">
           <div><div class="k">Ubicación</div><div class="v">Buenos Aires, Argentina</div></div>
           <div><div class="k">Disciplinas</div><div class="v">Branding · Packaging · Producto · Motion</div></div>
@@ -572,7 +582,18 @@ h1,h2,h3{font-weight:400;margin:0;letter-spacing:-.018em;line-height:1;}
   <div class="wrap">
     <div class="contact-head reveal">
       <h2>Contacto</h2>
-      <p class="contact-sub">Contame tu proyecto o escribime para colaborar. Respondo rápido.</p>
+      <p class="contact-sub">Si estás buscando una diseñadora que piense de punta a punta, estoy disponible. Respondo en menos de 48&nbsp;h.</p>
+    </div>
+
+    <div class="ct-cta reveal">
+      <div>
+        <span class="ct-cta-label">Próximos pasos</span>
+        <p class="ct-cta-text">¿Tenés un proyecto en mente o una posición que encaje? Escribime directamente o bajate el CV.</p>
+        <div class="ct-cta-actions">
+          <a href="mailto:ignaciamordentti@gmail.com" class="cta-primary">Escribime →</a>
+          <a href="cv-ignacia-mordentti.pdf" class="cta-secondary" download>Descargar CV</a>
+        </div>
+      </div>
     </div>
 
     <div class="contact-grid">
