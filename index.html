@@ -432,6 +432,14 @@ h1,h2,h3{font-weight:400;margin:0;letter-spacing:-.018em;line-height:1;}
 .d-next .ar{font-family:var(--mono);font-size:clamp(22px,4vw,40px);color:var(--accent);transition:transform .4s var(--ease);}
 .d-next a:hover .ar{transform:translateX(10px);}
 
+/* ---------- marquee strip ---------- */
+.marquee-wrap{overflow:hidden;position:relative;z-index:2;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:clamp(22px,4vh,38px) 0;}
+.marquee-track{display:flex;align-items:center;gap:clamp(10px,1.4vw,18px);width:max-content;will-change:transform;}
+.marquee-item{flex:0 0 auto;width:clamp(200px,19vw,272px);aspect-ratio:4/3;border-radius:8px;overflow:hidden;border:1px solid var(--line);display:block;background:var(--paper-2);}
+.marquee-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s var(--ease);}
+@media(hover:hover){.marquee-item:hover img{transform:scale(1.06);}}
+@media(prefers-reduced-motion:reduce){.marquee-track{transform:none!important;}}
+
 </style>
 <noscript><style>.reveal,.stagger>*{opacity:1!important;transform:none!important;}</style></noscript>
 <script>try{var p=localStorage.getItem('im-palette');if(p&&['terracota','azul','borgona'].indexOf(p)>=0)document.documentElement.setAttribute('data-palette',p);}catch(e){}</script>
@@ -470,6 +478,31 @@ h1,h2,h3{font-weight:400;margin:0;letter-spacing:-.018em;line-height:1;}
     </div>
   </div>
 </section>
+
+<!-- ===================== MARQUEE ===================== -->
+<div class="marquee-wrap">
+  <div class="marquee-track" id="marqueeTrack">
+    <a class="marquee-item" href="proyectos/bruma.html"><img src="bruma/cover.png" alt="Bruma" loading="lazy"></a>
+    <a class="marquee-item" href="proyectos/aceite-havanna.html"><img src="aceite-havanna/cover.png" alt="Aceite Havanna" loading="lazy"></a>
+    <a class="marquee-item" href="proyectos/diseno-de-movimiento.html"><img src="diseno-de-movimiento/cover.png" alt="Diseño de Movimiento" loading="lazy"></a>
+    <a class="marquee-item" href="proyectos/doggy-bag.html"><img src="doggy-bag/cover.png" alt="Doggy Bag" loading="lazy"></a>
+    <a class="marquee-item" href="proyectos/domus.html"><img src="domus/cover.png" alt="Domus" loading="lazy"></a>
+    <a class="marquee-item" href="proyectos/el-cielito.html"><img src="el-cielito/cover.png" alt="El Cielito" loading="lazy"></a>
+    <a class="marquee-item" href="proyectos/set-de-terere.html"><img src="set-de-terere/cover.png" alt="Set de Tereré" loading="lazy"></a>
+    <a class="marquee-item" href="proyectos/stand-prision-break.html"><img src="stand-prision-break/gallery-01.png" alt="Stand Prison Break" loading="lazy"></a>
+    <a class="marquee-item" href="proyectos/tizana.html"><img src="tizana/cover.png" alt="Tizana" loading="lazy"></a>
+    <!-- duplicado para loop continuo -->
+    <a class="marquee-item" href="proyectos/bruma.html" tabindex="-1" aria-hidden="true"><img src="bruma/cover.png" alt="" loading="lazy"></a>
+    <a class="marquee-item" href="proyectos/aceite-havanna.html" tabindex="-1" aria-hidden="true"><img src="aceite-havanna/cover.png" alt="" loading="lazy"></a>
+    <a class="marquee-item" href="proyectos/diseno-de-movimiento.html" tabindex="-1" aria-hidden="true"><img src="diseno-de-movimiento/cover.png" alt="" loading="lazy"></a>
+    <a class="marquee-item" href="proyectos/doggy-bag.html" tabindex="-1" aria-hidden="true"><img src="doggy-bag/cover.png" alt="" loading="lazy"></a>
+    <a class="marquee-item" href="proyectos/domus.html" tabindex="-1" aria-hidden="true"><img src="domus/cover.png" alt="" loading="lazy"></a>
+    <a class="marquee-item" href="proyectos/el-cielito.html" tabindex="-1" aria-hidden="true"><img src="el-cielito/cover.png" alt="" loading="lazy"></a>
+    <a class="marquee-item" href="proyectos/set-de-terere.html" tabindex="-1" aria-hidden="true"><img src="set-de-terere/cover.png" alt="" loading="lazy"></a>
+    <a class="marquee-item" href="proyectos/stand-prision-break.html" tabindex="-1" aria-hidden="true"><img src="stand-prision-break/gallery-01.png" alt="" loading="lazy"></a>
+    <a class="marquee-item" href="proyectos/tizana.html" tabindex="-1" aria-hidden="true"><img src="tizana/cover.png" alt="" loading="lazy"></a>
+  </div>
+</div>
 
 <!-- ===================== PROYECTOS ===================== -->
 <section class="projects" id="proyectos">
@@ -668,6 +701,26 @@ h1,h2,h3{font-weight:400;margin:0;letter-spacing:-.018em;line-height:1;}
   });
   // fallback: reveal hero right away even before load
   requestAnimationFrame(()=>document.querySelectorAll('.hero .reveal').forEach(el=>el.classList.add('is-visible')));
+
+  // Marquee strip — auto-scroll + parallax por scroll
+  (function(){
+    const track=document.getElementById('marqueeTrack');
+    if(!track||window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+    let x=0,halfW=0,sy=window.scrollY,psy=sy,vel=0;
+    window.addEventListener('scroll',()=>{sy=window.scrollY;},{passive:true});
+    function tick(){
+      if(!halfW){halfW=track.scrollWidth/2;if(!halfW){requestAnimationFrame(tick);return;}}
+      const dy=sy-psy;psy=sy;
+      vel=vel*0.82+dy*0.18;
+      x-=0.5+vel*0.12;
+      while(x<=-halfW)x+=halfW;
+      while(x>0)x-=halfW;
+      track.style.transform='translateX('+x+'px)';
+      requestAnimationFrame(tick);
+    }
+    function start(){halfW=track.scrollWidth/2;requestAnimationFrame(tick);}
+    document.readyState==='complete'?start():window.addEventListener('load',start);
+  })();
 
   // contact form → abre el cliente de correo con el mensaje armado
   const cf = document.getElementById('contactForm');
