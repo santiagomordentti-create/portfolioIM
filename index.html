@@ -361,24 +361,25 @@ h1,h2,h3{font-weight:400;margin:0;letter-spacing:-.018em;line-height:1;}
 .cta-secondary:hover{border-color:color-mix(in oklab,var(--paper) 42%, transparent);color:var(--paper);}
 
 /* ---------- reveal on load / scroll ---------- */
-.reveal{opacity:0;transform:translateY(18px);transition:opacity 1s var(--ease), transform 1s var(--ease);}
-.reveal.in{opacity:1;transform:none;}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease, transform .7s ease;}
+.reveal.is-visible{opacity:1;transform:none;}
+.reveal.d1{transition-delay:.08s;}.reveal.d2{transition-delay:.18s;}.reveal.d3{transition-delay:.28s;}.reveal.d4{transition-delay:.38s;}
 @media(prefers-reduced-motion:reduce){
-  .reveal{opacity:1 !important;transform:none !important;}
+  .reveal{opacity:1!important;transform:none!important;transition:none!important;}
   .scrollcue .ln::after{animation:none;}
 }
 
 /* stagger helper */
 .stagger > *{opacity:0;transform:translateY(14px);}
-.stagger.in > *{opacity:1;transform:none;transition:opacity .9s var(--ease), transform .9s var(--ease);}
-.stagger.in > *:nth-child(2){transition-delay:.06s;}
-.stagger.in > *:nth-child(3){transition-delay:.12s;}
-.stagger.in > *:nth-child(4){transition-delay:.18s;}
-.stagger.in > *:nth-child(5){transition-delay:.24s;}
-.stagger.in > *:nth-child(6){transition-delay:.30s;}
-.stagger.in > *:nth-child(7){transition-delay:.36s;}
-.stagger.in > *:nth-child(8){transition-delay:.42s;}
-.stagger.in > *:nth-child(9){transition-delay:.48s;}
+.stagger.is-visible > *{opacity:1;transform:none;transition:opacity .9s var(--ease), transform .9s var(--ease);}
+.stagger.is-visible > *:nth-child(2){transition-delay:.06s;}
+.stagger.is-visible > *:nth-child(3){transition-delay:.12s;}
+.stagger.is-visible > *:nth-child(4){transition-delay:.18s;}
+.stagger.is-visible > *:nth-child(5){transition-delay:.24s;}
+.stagger.is-visible > *:nth-child(6){transition-delay:.30s;}
+.stagger.is-visible > *:nth-child(7){transition-delay:.36s;}
+.stagger.is-visible > *:nth-child(8){transition-delay:.42s;}
+.stagger.is-visible > *:nth-child(9){transition-delay:.48s;}
 @media(prefers-reduced-motion:reduce){ .stagger > *{opacity:1 !important;transform:none !important;} }
 
 /* ============================================================
@@ -657,16 +658,16 @@ h1,h2,h3{font-weight:400;margin:0;letter-spacing:-.018em;line-height:1;}
 
   // reveal on scroll
   const io = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    entries.forEach(e=>{ if(e.isIntersecting){ const el=e.target,d=parseInt(el.dataset.revealDelay||0); d?setTimeout(()=>el.classList.add('is-visible'),d):el.classList.add('is-visible'); io.unobserve(el); } });
   }, {threshold:.12, rootMargin:'0px 0px -8% 0px'});
   document.querySelectorAll('.reveal, .stagger').forEach(el=>io.observe(el));
 
   // hero reveals immediately on load
   window.addEventListener('load', ()=>{
-    document.querySelectorAll('.hero .reveal').forEach(el=>el.classList.add('in'));
+    document.querySelectorAll('.hero .reveal').forEach(el=>el.classList.add('is-visible'));
   });
   // fallback: reveal hero right away even before load
-  requestAnimationFrame(()=>document.querySelectorAll('.hero .reveal').forEach(el=>el.classList.add('in')));
+  requestAnimationFrame(()=>document.querySelectorAll('.hero .reveal').forEach(el=>el.classList.add('is-visible')));
 
   // contact form → abre el cliente de correo con el mensaje armado
   const cf = document.getElementById('contactForm');
